@@ -5,13 +5,13 @@ const styles = {
   container: {
     display: "flex",
     height: "100vh",
-    fontFamily: "Consolas, monospace", // مشابه لـ VS Code
+    fontFamily: "Consolas, monospace",
   },
   sidebar: {
     width: "240px",
     borderRight: "1px solid #333",
-    backgroundColor: "#2d2d2d", // خلفية داكنة
-    color: "#b5b5b5", // لون نص أفتح
+    backgroundColor: "#2d2d2d",
+    color: "#b5b5b5",
     padding: "10px",
     overflowY: "auto",
   },
@@ -26,11 +26,11 @@ const styles = {
     fontSize: "14px",
   },
   fileItemHover: {
-    backgroundColor: "#3a3d42", // لون أخف عند المرور
+    backgroundColor: "#3a3d42",
     color: "#ffffff",
   },
   fileItemSelected: {
-    backgroundColor: "#007acc", // اللون الأزرق عند اختيار الملف
+    backgroundColor: "#007acc",
     color: "#ffffff",
   },
   header: {
@@ -46,7 +46,7 @@ const styles = {
     marginBottom: "10px",
     padding: "10px",
     width: "100%",
-    backgroundColor: "#007acc", // زر أزرق
+    backgroundColor: "#007acc",
     color: "#ffffff",
     border: "none",
     borderRadius: "4px",
@@ -66,7 +66,6 @@ const App = () => {
     content: "// Start coding here!",
   });
 
-  // دالة لاختيار المجلد
   const handleSelectFolder = async () => {
     const folderData = await window.electron.selectFolder();
     if (folderData) {
@@ -74,11 +73,9 @@ const App = () => {
     }
   };
 
-  // دالة لفتح الملف
   const handleFileClick = async (file) => {
     if (!file.isDirectory) {
       try {
-        // جلب المحتوى من الملف باستخدام fs أو fetch
         const fileContent = await window.electron.readFile(file.path);
         setSelectedFile({ name: file.name, content: fileContent });
       } catch (error) {
@@ -110,7 +107,7 @@ const App = () => {
                   ? styles.fileItemSelected.backgroundColor
                   : "transparent")
             }
-            onClick={() => handleFileClick(file)} // عند النقر على الملف
+            onClick={() => handleFileClick(file)}
           >
             <span style={styles.fileIcon}>
               {file.isDirectory ? "📁" : "📄"}

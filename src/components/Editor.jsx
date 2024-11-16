@@ -13,16 +13,14 @@ const Editor = ({ fileName = "index.js", initialValue = "" }) => {
       theme: "vs-dark",
     });
 
-    // تحديث المحتوى عند التعديل
     editor.onDidChangeModelContent(() => {
       setContent(editor.getValue());
     });
 
-    // التعامل مع اختصار Ctrl+S للحفظ
     const handleKeyDown = (event) => {
       if (event.ctrlKey && event.key === 's') {
         event.preventDefault();
-        saveFile();  // استدعاء وظيفة الحفظ
+        saveFile();
       }
     };
 
@@ -35,7 +33,6 @@ const Editor = ({ fileName = "index.js", initialValue = "" }) => {
   }, [fileName, initialValue]);
 
   const saveFile = () => {
-    // إرسال البيانات إلى Electron لحفظ الملف
     window.electron.saveFile(fileName, content);
   };
 
